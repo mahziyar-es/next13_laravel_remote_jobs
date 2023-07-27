@@ -1,0 +1,75 @@
+version: "3"
+services:
+
+  client:
+    build:
+      context: client
+      dockerfile: Dockerfile.prod
+    restart: always
+    working_dir: /app
+    env_file: ./client/.env.local
+    ports:
+      - "80:3000"
+    networks:
+      - custom
+
+  server:
+    build:
+      args:
+        user: test
+        uid: 1000
+      context: ./server
+      dockerfile: Dockerfile
+    restart: always
+    tty: true
+    working_dir: /var/www/
+    volumes:
+      - ./server:/var/www
+      - ./docker/php:/usr/local/etc/php/conf.d
+    env_file: ./server/.env
+    depends_on:
+      - db
+    networks:
+      - custom
+
+
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: remote_jobs
+      MYSQL_ROOT_PASSWORD: "123"
+      MYSQL_PASSWORD: "123"
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    volumes:
+      - ./docker/mysql_data:/var/lib/mysql
+      - ./docker/mysql:/etc/mysql/my.cnf
+    depends_on:
+      - server
+    networks:
+      - custom
+
+  
+  nginx:
+    image: nginx:stable-alpine
+    restart: always
+    ports:
+      - 8000:80
+    volumes:
+      - ./server:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - server
+      - client
+
+    networks:
+      - custom
+
+networks:
+  custom:
+    driver: bridge
+
+
+volumes:
+  client:
+  server:
