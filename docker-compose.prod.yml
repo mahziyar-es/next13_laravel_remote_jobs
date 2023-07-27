@@ -19,7 +19,7 @@ services:
         user: test
         uid: 1000
       context: ./server
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     restart: always
     tty: true
     working_dir: /var/www/
