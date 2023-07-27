@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.bg-landing{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-landing-md{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.confirm-container .gamon-sheet__body{
+  z-index: 200;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b1b1b1;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #9e9e9e;
+}
+
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.scroll-display-animation{
+  opacity: 0;
+  visibility: hidden;
+  transition: 2s;
+}
+.scroll-display-animation--show{
+  transform: scale(1);
+  visibility: visible;
+  opacity: 1;
+}
+
+
+@layer components {
+  .bg-theme-1 {
+    background-color: theme('colors.theme-1');
+    color: theme('colors.theme-1-contrast');
+  }
+  .bg-theme-2 {
+    background-color: theme('colors.theme-2');
+    color: theme('colors.theme-2-contrast');
+  }
+  .bg-theme-3 {
+    background-color: theme('colors.theme-3');
+    color: theme('colors.theme-3-contrast');
+  }
+  .bg-theme-4 {
+    background-color: theme('colors.theme-4');
+    color: theme('colors.theme-4-contrast');
+  }
+}
+
+
+.fade-out{
+  visibility: hidden;
+}
+
+.fade-in{
+  visibility: visible;
+  opacity: 1;
+}
+
+.gamon-confirm__title{
+  font-size: 20px;
+}
+.gamon-confirm__text{
+  margin-top: 10px !important;
+}
+
+.gamon-loading__dual-ring{
+  border-top-color: theme('colors.theme-4') !important;
+}
+.gamon-loading__dual-ring--reverse{
+  border-bottom-color: theme('colors.theme-4') !important;
+}
+
+.gamon-checkbox{
+  margin-top: 0 !important;
+}
