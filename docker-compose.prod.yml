@@ -28,7 +28,6 @@ services:
       - ./docker/php:/usr/local/etc/php/conf.d
     env_file: ./server/.env
     depends_on:
-      - db
     networks:
       - custom
 
@@ -60,7 +59,6 @@ services:
       - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - server
-      - client
 
     networks:
       - custom
