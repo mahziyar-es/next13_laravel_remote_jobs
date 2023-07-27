@@ -42,7 +42,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
     volumes:
       - ./docker/mysql_data:/var/lib/mysql
-      - ./docker/mysql:/etc/mysql/my.cnf
+      # - ./docker/mysql:/etc/mysql/my.cnf
     depends_on:
       - server
     networks:
