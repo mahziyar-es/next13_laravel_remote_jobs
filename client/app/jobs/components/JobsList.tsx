@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import {UIEvent, useEffect, useState} from 'react'
+import {FormEvent, UIEvent, useEffect, useState} from 'react'
 import { Button, InputBasic, Sheet, InputSelect, InputCheckbox, Loading } from 'gamon-react'
 import Job from './Job'
 import JobDetail from "./JobDetail";
@@ -42,7 +42,7 @@ export default function JobsList(
 
     useEffect(()=>{
         fetchJobs()
-    },[seniority.length, jobType.length, searchQuery.length, selectedCountries.length, timespan, listType])
+    },[seniority.length, jobType.length, selectedCountries.length, timespan, listType])
 
 
     const checkSmallScreen = ()=>{
@@ -50,6 +50,11 @@ export default function JobsList(
         const breakPoint = getTailwindcssBreakPoint('md')
         if(breakPoint && screenWidth <= breakPoint) setSmallScreen(true)
         else setSmallScreen(false)
+    }
+
+    const searchSubmit = (e: FormEvent)=>{
+        e.preventDefault()
+        fetchJobs()
     }
 
     const fetchJobs = async (lazyloading=false)=>{
@@ -151,7 +156,10 @@ export default function JobsList(
                                 { listType ? (listType == 'posted' ? 'Jobs you posted' : 'Your applications') : 'Jobs list' } 
                             </p>
                             </div>
-                            <InputBasic model={[searchQuery, setSearchQuery]} placeholder="Search" className="rounded-lg h-[40px]" />
+                            <form onSubmit={searchSubmit} className="flex items-center w-full">
+                                <InputBasic model={[searchQuery, setSearchQuery]} placeholder="Enter a query" className="rounded-lg h-[40px] rounded-e-none" />
+                                <button className="bg-theme-3 text-sm p-2 rounded-e-md h-[40px]" type="submit">Search</button>
+                            </form>
                             <JobsListFilters
                                 seniority={seniority}
                                 senioritySelection={senioritySelection}
