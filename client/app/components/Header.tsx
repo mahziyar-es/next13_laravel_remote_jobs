@@ -31,7 +31,7 @@ export default function RootLayoutHeader({
             {loaded && 
                 <>
                     <div className="gamon-sup-sheet-container">
-                        <Notify position='bottom' duration={100000} />
+                        <Notify position='bottom' />
                         <Confirm />
                     </div>
                 </>
