@@ -38,8 +38,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN chown -R $USER:www-data /var/www/storage
 RUN chown -R $USER:www-data /var/www/bootstrap/cache
-RUN chmod -R 755 /var/www/storage
-RUN chmod -R 755 /var/www/bootstrap/cache
+RUN chown -R $USER:www-data /var/www/public
+RUN chmod -R 775 /var/www/public
+RUN chmod -R 775 /var/www/storage
+RUN chmod -R 775 /var/www/bootstrap/cache
 
 # RUN chown -R $user:$user /var/www
 
