@@ -41,6 +41,11 @@ module.exports = {
           '0%': { opacity: 0, transform: 'translateX(10px)' },
           '100%': { opacity: 1, transform: 'translateX(0px)' },
         },
+        upDown: {
+          '0%': { transform: 'translateY(0px)' },
+          '15%': { transform: 'translateY(-20px)' },
+          '20%': { transform: 'translateY(0px)' },
+        },
       },
 
       animation: {
@@ -48,6 +53,7 @@ module.exports = {
         slideInRight: 'slideInRight 1s ease-in-out',
         slideInLeft: 'slideInLeft 1s ease-in-out',
         fadeInScale: 'fadeInScale 1s ease-in-out',
+        upDown: 'upDown 10s ease-in-out infinite',
       }
 
     },

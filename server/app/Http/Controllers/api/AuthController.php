@@ -62,9 +62,10 @@ class AuthController extends Controller
         if(Auth::guard('web')->check()) return response()->json(['message'=> 'You are logged in'], 400);
 
         $link =  Socialite::driver('google')->stateless()->redirect()->getTargetUrl();
-        return response([
+
+        return response()->json([
             'link'=> $link
-        ],200);
+        ]);
     }
 
 

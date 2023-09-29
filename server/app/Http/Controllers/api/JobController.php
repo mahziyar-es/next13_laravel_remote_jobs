@@ -170,7 +170,7 @@ class JobController extends Controller
 
     private function prepareQuestionsArray($questions){
         $questions = json_decode($questions, true);
-        if(count($questions) == 0) return [];
+        if(count($questions) == 0) return [[], []];
 
         $newQuestions = [];
         $existingQuestionIds = [];
